@@ -1,0 +1,69 @@
+<div class="overflow-x-auto">
+    <table class="min-w-full bg-white">
+        <thead>
+            <tr>
+                @for(column of columns(); track $index){
+                <th class="py-2 px-6  border-b border-gray-200 text-left text-xs font-semibold text-gray-600 ">
+                    {{column.header}} </th>
+                }
+                <th class="py-2 px-6  border-b border-gray-200 text-left text-xs font-semibold text-gray-600 ">Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Filas de datos -->
+            @for(item of dataTable(); track $index){
+            <tr>
+                <!-- Celdas de datos -->
+                @for(column of columns(); track $index){
+                @switch (column.field) {
+                <!-- Caso 'name' -->
+                @case ('name') {
+                <td class="py-4 px-6 border-b border-gray-200 text-sm">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 h-10 w-10">
+                            <div
+                                class="h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
+                                {{ item.name[0].inicial }}
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <div class="text-sm font-medium text-gray-900">{{ item.name[1].name }}</div>
+                            <div class="text-sm text-gray-500">{{ item.name[2].subName }}</div>
+                        </div>
+                    </div>
+                </td>
+                }
+                <!-- Caso 'territories' -->
+                @case ('territories') {
+                <td class="py-4 px-6 border-b border-gray-200 text-sm">
+                    @for (territory of item[column.field]; track $index) {
+                    <span
+                        class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">{{
+                        territory.name }}</span>
+                    }
+                </td>
+                }
+                <!-- Caso 'status' -->
+                @case ('status') {
+                <td class="py-4 px-6 border-b border-gray-200 text-sm">
+                    <span
+                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">{{item[column.field]
+                        }}</span>
+                    <!-- <span
+                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">Disable</span> -->
+                </td>
+                }
+                <!-- Caso por defecto -->
+                @default {
+                <td class="py-4 px-6 border-b border-gray-200 text-sm">{{item[column.field] }}</td>
+                }
+                }
+                }
+                <!-- Celda para acciones -->
+                <td class="py-4 px-6 border-b border-gray-200 text-sm">...</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

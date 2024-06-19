@@ -1,0 +1,13 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas de igual tamaño */
+    gap: 20px; /* Espacio entre los elementos de la cuadrícula */
+  }
+  
+  .grid-item {
+    padding: 20px; /* Espacio interno para los elementos */
+    background-color: #f0f0f0; /* Color de fondo para cada elemento */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  }
+  
